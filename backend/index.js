@@ -26,6 +26,11 @@ app.use(cors({
         'https://find-your-space-e3d4.vercel.app'
     ]
 }));
+
+app.use(cors({
+    origin: allowedOrigins
+}));
+
 app.use(express.json());
 
 // Static files (Path ko theek kiya gaya hai)
