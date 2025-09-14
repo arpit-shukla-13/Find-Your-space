@@ -21,19 +21,21 @@ const port = process.env.PORT || 5500;
 connectDB();
 
 // --- Core Middleware ---
-app.use(cors({
-    origin: ['http://localhost:3000',
-        'https://find-your-space-e3d4.vercel.app'
-    ]
-}));
 
+// THIS IS THE FIX: Define the allowedOrigins array here
+const allowedOrigins = [
+  'http://localhost:3000', 
+  'https://find-your-space-ten.vercel.app'
+];
+
+// Now, use the cors middleware with the defined origins
 app.use(cors({
     origin: allowedOrigins
 }));
 
+// JSON parser
 app.use(express.json());
-
-// Static files (Path ko theek kiya gaya hai)
+// Static files
 app.use(express.static('./static/uploads'));
 
 // --- API Routes ---
