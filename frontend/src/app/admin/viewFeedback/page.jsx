@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import toast from 'react-hot-toast';
-
+import { API_URL } from '@/app/config';
 // Component name should be in PascalCase
 const ViewFeedback = () => {
   const [feedbackList, setFeedbackList] = useState([]);
@@ -11,7 +11,7 @@ const ViewFeedback = () => {
   // Function to fetch all feedback from the API
   const getFeedback = async () => {
     try {
-      const res = await fetch("http://localhost:5500/feedback/getall");
+      const res = await fetch(`${API_URL}/feedback/getall`);
       if (!res.ok) {
         throw new Error('Failed to fetch feedback');
       }
@@ -29,7 +29,7 @@ const ViewFeedback = () => {
   const deleteFeedback = async (id) => {
     toast.loading('Deleting feedback...', { id: 'delete-toast' });
     try {
-      const response = await fetch('http://localhost:5500/feedback/delete/' + id, {
+      const response = await fetch(`${API_URL}/feedback/delete/${id}`, {
         method: 'DELETE',
       });
 

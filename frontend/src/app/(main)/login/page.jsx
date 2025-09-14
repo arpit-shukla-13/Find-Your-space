@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { API_URL } from '@/app/config';
 
 // Login ke liye validation schema
 const loginSchema = Yup.object().shape({
@@ -24,7 +25,7 @@ const Login = () => {
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       try {
-        const response = await fetch('http://localhost:5500/user/authenticate', {
+        const response = await fetch(`${API_URL}/user/authenticate`, {
           method: 'POST',
           body: JSON.stringify(values),
           headers: {

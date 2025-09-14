@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from 'yup';
 import { FaMapMarkerAlt, FaRupeeSign, FaThLarge } from "react-icons/fa";
+import { API_URL } from '@/app/config';
 
 // Validation schema for the booking form
 const BookingSchema = Yup.object().shape({
@@ -29,7 +30,7 @@ const Booking = () => {
 
   // Fetch space details when the component mounts
   useEffect(() => {
-    fetch(`http://localhost:5500/space/getbyid/${id}`)
+    fetch(`${API_URL}/space/getbyid/${id}`)
       .then((response) => {
         if (!response.ok) throw new Error("Could not find the space.");
         return response.json();
@@ -80,7 +81,7 @@ const Booking = () => {
           {/* Left Side: Space Info */}
           <div className="lg:w-1/2 p-8">
             <img
-              src={`http://localhost:5500/${spaceDetails.image}`}
+              src={`${API_URL}/${spaceDetails.image}`}
               alt={spaceDetails.name}
               className="w-full h-80 object-cover rounded-lg"
             />

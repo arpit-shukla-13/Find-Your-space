@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import { API_URL } from '@/app/config';
 
 // Component ka naam PascalCase mein hona chahiye
 const AdminDashboard = () => {
@@ -16,9 +17,9 @@ const AdminDashboard = () => {
   const fetchDashboardData = async () => {
     try {
       const [userRes, bookingRes, spaceRes] = await Promise.all([
-        fetch('http://localhost:5500/user/getall'),
-        fetch('http://localhost:5500/booking/getall'),
-        fetch('http://localhost:5500/space/getall')
+        fetch(`${API_URL}/user/getall`),
+        fetch(`${API_URL}/booking/getall`),
+        fetch(`${API_URL}/space/getall`)
       ]);
 
       if (!userRes.ok || !bookingRes.ok || !spaceRes.ok) {

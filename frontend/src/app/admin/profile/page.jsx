@@ -63,7 +63,7 @@ const AdminProfile = () => {
                                     <div className="relative">
                                         <img
                                             alt="Admin Profile"
-                                            src={`http://localhost:5500/${adminData.image || 'default-avatar.png'}`}
+                                            src={`${API_URL}/${adminData.image || 'default-avatar.png'}`}
                                             className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                                             style={{ maxWidth: "150px" }}
                                         />

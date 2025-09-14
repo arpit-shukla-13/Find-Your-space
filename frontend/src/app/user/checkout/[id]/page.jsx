@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useParams, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { API_URL } from '@/app/config';
 
 // Stripe Promise ko component ke bahar initialize karein
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
@@ -73,7 +74,7 @@ const CheckoutPage = () => {
       setCurrentUser(JSON.parse(userSession).user);
     }
 
-    fetch(`http://localhost:5500/space/getbyid/${id}`)
+    fetch(`${API_URL}/space/getbyid/${id}`)
       .then(res => res.json())
       .then(data => setSpaceDetails(data))
       .catch(err => {
@@ -91,7 +92,7 @@ const CheckoutPage = () => {
        
       };
 
-      fetch('http://localhost:5500/payment/create-payment-intent', {
+      fetch(`${API_URL}/payment/create-payment-intent`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -125,7 +126,7 @@ const CheckoutPage = () => {
           <div className="bg-white p-6 rounded-lg shadow-md">
             <div className="flex justify-between items-center pb-4 border-b">
                 <div className="flex items-center">
-                    <img src={`http://localhost:5500/${spaceDetails.image}`} alt={spaceDetails.name} className="w-20 h-20 rounded-lg object-cover mr-4"/>
+                    <img src={`${API_URL}/${spaceDetails.image}`} alt={spaceDetails.name} className="w-20 h-20 rounded-lg object-cover mr-4"/>
                     <div>
                         <p className="font-semibold">{spaceDetails.name}</p>
                         <p className="text-sm text-gray-500">{spaceDetails.address}</p>

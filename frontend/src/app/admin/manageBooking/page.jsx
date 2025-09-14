@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { API_URL } from '@/app/config';
 
 // Component name should be in PascalCase
 const ManageBooking = () => {
@@ -10,7 +11,7 @@ const ManageBooking = () => {
   // Function to fetch all bookings from the API
   const fetchBookings = async () => {
     try {
-      const response = await fetch('http://localhost:5500/booking/getall');
+      const response = await fetch(`${API_URL}/booking/getall`);
       if (!response.ok) {
         throw new Error('Failed to fetch bookings');
       }
@@ -28,7 +29,7 @@ const ManageBooking = () => {
   const deleteBooking = async (id) => {
     toast.loading('Deleting booking...', { id: 'delete-toast' });
     try {
-      const response = await fetch('http://localhost:5500/booking/delete/' + id, {
+      const response = await fetch(`${API_URL}/booking/delete/${id}`, {
         method: 'DELETE',
       });
 

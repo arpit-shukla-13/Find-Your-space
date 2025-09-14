@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaMapMarkerAlt, FaRupeeSign, FaThLarge } from "react-icons/fa";
+import { API_URL } from '@/app/config';
 
 // Component ka naam PascalCase mein
 const SpaceDetails = () => {
@@ -13,7 +14,7 @@ const SpaceDetails = () => {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:5500/space/getbyid/${id}`)
+      fetch(`${API_URL}/space/getbyid/${id}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Space not found');
@@ -59,7 +60,7 @@ const SpaceDetails = () => {
           {/* Image Section */}
           <div className="w-full h-64 lg:h-full">
             <img
-              src={`http://localhost:5500/${spaceDetails.image}`}
+              src={`${API_URL}/${spaceDetails.image}`}
               alt={spaceDetails.name}
               className="h-full w-full object-cover"
             />

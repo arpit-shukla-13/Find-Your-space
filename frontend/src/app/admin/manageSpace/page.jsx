@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { API_URL } from '@/app/config';
 
 // Component name should be in PascalCase
 const ManageSpace = () => {
@@ -11,7 +12,7 @@ const ManageSpace = () => {
   // Function to fetch all spaces from the API
   const fetchSpaces = async () => {
     try {
-      const response = await fetch('http://localhost:5500/space/getall');
+      const response = await fetch(`${API_URL}/space/getall`);
       if (!response.ok) {
         throw new Error('Failed to fetch spaces');
       }
@@ -29,7 +30,7 @@ const ManageSpace = () => {
   const deleteSpace = async (id) => {
     toast.loading('Deleting space...', { id: 'delete-toast' });
     try {
-      const response = await fetch('http://localhost:5500/space/delete/' + id, {
+      const response = await fetch(`${API_URL}/space/delete/${id}`, {
         method: 'DELETE',
       });
 
@@ -86,7 +87,7 @@ const ManageSpace = () => {
                   <td className="px-6 py-4">
                     <img
                       className="w-16 h-16 rounded-lg object-cover"
-                      src={`http://localhost:5500/${space.image}`}
+                      src={`${API_URL}/${space.image}`}
                       alt={space.name}
                     />
                   </td>

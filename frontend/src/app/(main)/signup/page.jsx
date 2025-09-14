@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import Link from "next/link";
 import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
+import { API_URL } from '@/app/config';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().min(4, "Name is too short").required("Name is required"),
@@ -38,7 +39,7 @@ const Signup = () => {
       const { confirmPassword, ...dataToSend } = values;
 
       try {
-        const response = await fetch('http://localhost:5500/user/add', {
+        const response = await fetch(`${API_URL}/user/add`, {
           method: 'POST',
           body: JSON.stringify(dataToSend),
           headers: {

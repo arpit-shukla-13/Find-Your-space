@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
+import { API_URL } from '@/app/config';
 
 // Password reset ke liye validation schema
 const ResetPasswordSchema = Yup.object().shape({
@@ -26,14 +27,14 @@ const ResetPassword = () => {
   const handleSendOtp = async () => {
     try {
       // Pehle check karein ki email registered hai ya nahi
-      const checkEmailRes = await fetch(`http://localhost:5500/user/getbymail/${email}`);
+      const checkEmailRes = await fetch(`${API_URL}/user/getbymail/${email}`);
       if (checkEmailRes.status !== 200) {
         toast.error("Email is not registered.");
         return;
       }
       
       // Agar email registered hai to OTP bhejein
-      const otpRes = await fetch(`http://localhost:5500/util/sendotp`, {
+      const otpRes = await fetch(`${API_URL}/util/sendotp`, {
         method: "POST",
         body: JSON.stringify({ email }),
         headers: { "Content-Type": "application/json" },
@@ -54,7 +55,7 @@ const ResetPassword = () => {
   // OTP verify karne ka function
   const handleVerifyOtp = async () => {
     try {
-      const res = await fetch(`http://localhost:5500/util/verifyotp/${email}/${otp}`);
+      const res = await fetch(`${API_URL}/util/verifyotp/${email}/${otp}`);
       if (res.status === 200) {
         toast.success("OTP Verified!");
         setStep(3); // Password reset form dikhayein
@@ -77,7 +78,7 @@ const ResetPassword = () => {
     onSubmit: async (values) => {
       try {
         // Naye secure endpoint par request bhejein
-        const res = await fetch(`http://localhost:5500/user/reset-password`, {
+        const res = await fetch(`${API_URL}/user/reset-password`, {
           method: "POST",
           body: JSON.stringify({ email: email, newPassword: values.password }),
           headers: { "Content-Type": "application/json" },

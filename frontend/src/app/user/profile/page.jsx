@@ -2,6 +2,7 @@
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { API_URL } from '@/app/config';
 
 // Component name in PascalCase
 const UserProfile = () => {
@@ -27,7 +28,7 @@ const UserProfile = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:5500/user/update/${currentUser._id}`, {
+        const response = await fetch(`${API_URL}/user/update/${currentUser._id}`, {
           method: 'PUT',
           body: JSON.stringify(values),
           headers: { 'Content-Type': 'application/json' }
@@ -60,7 +61,7 @@ const UserProfile = () => {
     const fd = new FormData();
     fd.append("myfile", file);
     toast.loading('Uploading...', { id: 'upload-toast' });
-    fetch("http://localhost:5500/util/uploadfile", {
+    fetch(`${API_URL}/util/uploadfile`, {
       method: "POST",
       body: fd,
     }).then((res) => {

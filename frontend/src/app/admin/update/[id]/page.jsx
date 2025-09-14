@@ -4,6 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from 'yup';
+import { API_URL } from '@/app/config';
 
 // Validation schema for the form
 const SpaceSchema = Yup.object().shape({
@@ -31,7 +32,7 @@ const UpdateSpace = () => {
   
   // Fetch existing space data when the component mounts
   useEffect(() => {
-    fetch(`http://localhost:5500/space/getbyid/${id}`)
+    fetch(`${API_URL}/space/getbyid/${id}`)
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch space data");
         return res.json();
@@ -55,7 +56,7 @@ const UpdateSpace = () => {
     validationSchema: SpaceSchema,
     onSubmit: async (values) => {
       try {
-        const res = await fetch(`http://localhost:5500/space/update/${id}`, {
+        const res = await fetch(`${API_URL}/space/update/${id}`, {
           method: "PUT",
           body: JSON.stringify(values),
           headers: { "Content-Type": "application/json" },
@@ -82,7 +83,7 @@ const UpdateSpace = () => {
     fd.append("myfile", file);
 
     toast.loading('Uploading image...', { id: 'upload-toast' });
-    fetch("http://localhost:5500/util/uploadfile", {
+    fetch(`${API_URL}/util/uploadfile`, {
       method: "POST",
       body: fd,
     }).then((res) => {

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { API_URL } from '@/app/config';
 
 // Component name should be in PascalCase
 const OrderPage = () => {
@@ -18,7 +19,7 @@ const OrderPage = () => {
 
       // Ensure currentUser and its _id exist before fetching
       if (currentUser && currentUser._id) {
-        fetch(`http://localhost:5500/booking/getbyuser/${currentUser._id}`)
+        fetch(`${API_URL}/booking/getbyuser/${currentUser._id}`)
           .then((response) => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -76,7 +77,7 @@ const OrderPage = () => {
                     <td className="px-6 py-4">
                       <img
                         className="w-24 h-24 rounded-lg object-cover"
-                        src={`http://localhost:5500/${order.space.image}`}
+                        src={`${API_URL}/${order.space.image}`}
                         alt={order.space.name}
                       />
                     </td>

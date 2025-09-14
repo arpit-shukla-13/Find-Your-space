@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { API_URL } from '@/app/config';
 
 // Component name should be in PascalCase
 const ManageUser = () => {
@@ -10,7 +11,7 @@ const ManageUser = () => {
   // Function to fetch all users from the API
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:5500/user/getall');
+      const response = await fetch(`${API_URL}/user/getall`);
       if (!response.ok) {
         throw new Error('Failed to fetch users');
       }
@@ -29,7 +30,7 @@ const ManageUser = () => {
   const deleteUser = async (id) => {
     toast.loading('Deleting user...', { id: 'delete-toast' });
     try {
-      const response = await fetch('http://localhost:5500/user/delete/' + id, {
+      const response = await fetch(`${API_URL}/user/delete/${id}`, {
         method: 'DELETE',
       });
 
@@ -81,7 +82,7 @@ const ManageUser = () => {
                     <div className="flex items-center">
                       <img
                         className="w-10 h-10 rounded-full flex-shrink-0 mr-3"
-                        src={`http://localhost:5500/${user.image}`}
+                        src={`${API_URL}/${user.image}`}
                         alt={user.name}
                       />
                       {user.name}

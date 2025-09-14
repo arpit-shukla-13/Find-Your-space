@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { API_URL } from '@/app/config';
 
 // Ek chhota component jo Suspense ke saath kaam karega
 const ThankYouContent = () => {
@@ -26,7 +27,7 @@ const ThankYouContent = () => {
 
         const retrievePaymentIntent = async () => {
             try {
-                const response = await fetch(`http://localhost:5500/payment/retrieve-payment-intent`, {
+                const response = await fetch(`${API_URL}/payment/retrieve-payment-intent`, {
                     method: 'POST',
                     body: JSON.stringify({ paymentIntentId }),
                     headers: { 'Content-Type': 'application/json' }
@@ -56,7 +57,7 @@ const ThankYouContent = () => {
             }
             
             try {
-                const response = await fetch(`http://localhost:5500/booking/addBooking`, {
+                const response = await fetch(`${API_URL}/booking/addBooking`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

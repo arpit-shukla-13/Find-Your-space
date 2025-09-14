@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { useRouter } from "next/navigation";
+import { API_URL } from '@/app/config';
 
 // Validation schema for the form
 const SpaceSchema = Yup.object().shape({
@@ -43,7 +44,7 @@ const AddSpace = () => {
     validationSchema: SpaceSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
-        const response = await fetch("http://localhost:5500/space/addSpace", {
+        const response = await fetch(`${API_URL}/space/addSpace`, {
           method: "POST",
           body: JSON.stringify(values),
           headers: {
@@ -74,7 +75,7 @@ const AddSpace = () => {
     fd.append("myfile", file);
     
     toast.loading('Uploading image...', { id: 'upload-toast' });
-    fetch("http://localhost:5500/util/uploadfile", {
+    fetch(`${API_URL}/util/uploadfile`, {
       method: "POST",
       body: fd,
     }).then((res) => {

@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { API_URL } from '@/app/config';
 
 
 const ViewContact = () => {
@@ -10,7 +11,7 @@ const ViewContact = () => {
   
   const getContacts = async () => {
     try {
-      const res = await fetch("http://localhost:5500/contact/getall");
+      const res = await fetch(`${API_URL}/contact/getall`);
       if (!res.ok) {
         throw new Error("Failed to fetch contacts");
       }
@@ -27,7 +28,7 @@ const ViewContact = () => {
 
   const deleteContact = async (id) => {
     try {
-      const res = await fetch('http://localhost:5500/contact/delete/' + id, {
+      const res = await fetch(`${API_URL}/contact/delete/${id}`, {
         method: 'DELETE',
       });
       if (res.status === 200) {
