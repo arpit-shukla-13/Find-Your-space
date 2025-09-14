@@ -22,7 +22,9 @@ connectDB();
 
 // --- Core Middleware ---
 app.use(cors({
-    origin: ['http://localhost:3000']
+    origin: ['http://localhost:3000',
+        'https://find-your-space-e3d4.vercel.app'
+    ]
 }));
 app.use(express.json());
 
