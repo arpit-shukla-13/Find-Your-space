@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const bookingSchema = new mongoose.Schema({ 
     space: { 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: "Space" 
+        ref: "Space" // Use the correct Model name
     },
     user: { 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: "User" 
+        ref: "User" // Use the correct Model name
     },
     date: { 
         type: Date, 

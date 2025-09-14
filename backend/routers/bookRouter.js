@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Booking = require('../models/bookModal'); 
+const Booking = require('../models/bookModel'); 
 
 router.post('/addBooking', async (req, res) => {
     try {
