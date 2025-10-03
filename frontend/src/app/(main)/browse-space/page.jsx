@@ -19,7 +19,7 @@ const BrowseSpace = () => {
     }
 
     // API se spaces fetch karein
-    fetch('http://localhost:5500/space/getall')
+    fetch(`${API_URL}/space/getall`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch spaces');
