@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { API_URL } from '@/app/config';
 
 // Component ka naam PascalCase mein
 const BrowseSpace = () => {
@@ -63,7 +64,7 @@ const BrowseSpace = () => {
               <div key={space._id} className="w-full max-w-sm rounded-lg bg-white p-4 shadow-lg duration-150 hover:scale-105 hover:shadow-xl transition-transform">
                 <img
                   className="w-full rounded-lg object-cover object-center h-56"
-                  src={`http://localhost:5500/${space.image}`}
+                  src={`${API_URL}/${space.image}`}
                   alt={space.name}
                 />
                 <div className="py-4 px-2">
