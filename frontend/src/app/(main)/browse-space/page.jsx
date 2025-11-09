@@ -18,7 +18,7 @@ const BrowseSpace = () => {
       setCurrentUser(JSON.parse(userSession));
     }
 
-    // API se spaces fetch karein
+    // Fetch from API
     fetch(`${API_URL}/space/getall`)
       .then((response) => {
         if (!response.ok) {
@@ -47,7 +47,7 @@ const BrowseSpace = () => {
     }
   };
 
-  // Jab tak data load ho raha hai, loading message dikhayein
+
   if (loading) {
     return <div className="text-center mt-20 text-xl font-semibold">Loading Spaces...</div>;
   }
