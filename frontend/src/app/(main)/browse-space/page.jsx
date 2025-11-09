@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { API_URL } from '@/app/config';
 
-// Component ka naam PascalCase mein
+
 const BrowseSpace = () => {
   const [spaceList, setSpaceList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +12,7 @@ const BrowseSpace = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // sessionStorage ko hamesha useEffect ke andar hi access karein
+    // Check for user session
     const userSession = sessionStorage.getItem('user');
     if (userSession) {
       setCurrentUser(JSON.parse(userSession));
